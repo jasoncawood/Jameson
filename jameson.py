@@ -1,5 +1,5 @@
 # Import some necessary libraries.
-import socket 
+import socket
 # Set up our commands function
 def commands(nick,channel,message):
    if message.find(botnick+': dl3k')!=-1:
@@ -7,24 +7,24 @@ def commands(nick,channel,message):
    elif message.find(botnick+': help')!=-1:
       ircsock.send('PRIVMSG %s :%s: My other command is dl3k.\r\n' % (channel,nick))
 
-# Some basic variables used to configure the bot        
+# Some basic variables used to configure the bot
 server = "irc.freenode.net" # Server
-channel = "#dl3k" # Channel
+channel = "#channel" # Channel
 botnick = "jameson" # Your bots nick
 
 
 def ping(): # This is our first function! It will respond to server Pings.
-  ircsock.send("PONG :pingis\n")  
+  ircsock.send("PONG :pingis\n")
 
 def sendmsg(chan , msg): # This is the send message function, it simply sends messages to the channel.
-  ircsock.send("PRIVMSG "+ chan +" :"+ msg +"\n") 
+  ircsock.send("PRIVMSG "+ chan +" :"+ msg +"\n")
 
 def joinchan(chan): # This function is used to join channels.
   ircsock.send("JOIN "+ chan +"\n")
 
 def hello(): # This function responds to a user that inputs "Hello Jameson"
   ircsock.send("PRIVMSG "+ channel +" :Hello!\n")
-                  
+
 ircsock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 ircsock.connect((server, 6667)) # Here we connect to the server using the port 6667
 ircsock.send("USER "+ botnick +" "+ botnick +" "+ botnick +" :This bot is a test.\n") # user authentication
